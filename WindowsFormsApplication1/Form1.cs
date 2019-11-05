@@ -15,6 +15,7 @@ namespace WindowsFormsApplication1
         public Form1()
         {
             InitializeComponent();
+            textBox1.ReadOnly = true;
         }
         double v1, v2, R;
         char op;
@@ -67,32 +68,117 @@ namespace WindowsFormsApplication1
         {
             textBox1.Text = textBox1.Text += 9;
         }
+        private void button14_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = textBox1.Text + ",";
+        }
 
         private void button10_Click(object sender, EventArgs e)
         {
+
             textBox1.Text = textBox1.Text += 0;
         }
 
         private void soma_Click(object sender, EventArgs e)
         {
-            v1 = double.Parse(textBox1.Text);
-            op = '+';
-            textBox1.Clear();
+            try
+            {
+                v1 = double.Parse(textBox1.Text);
+                op = '+';
+                textBox1.Clear();
+            }
+            catch
+            {
+
+            }
         }
 
         private void subtração_Click(object sender, EventArgs e)
         {
-            v1 = double.Parse(textBox1.Text);
-            op = '-';
-            textBox1.Clear();
+            try
+            {
+                v1 = double.Parse(textBox1.Text);
+                op = '-';
+                textBox1.Clear();
+            }
+            catch
+            {
+
+            }
         }
 
         private void multiplicação_Click(object sender, EventArgs e)
         {
-            v1 = double.Parse(textBox1.Text);
-            op = 'x';
-            textBox1.Clear();
+            try
+            {
+                v1 = double.Parse(textBox1.Text);
+                op = 'x';
+                textBox1.Clear();
+            }
+            catch
+            {
+
+            }
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Length - 1);
+            }
+            catch
+            {
+                MessageBox.Show("Visor Vazio!", "calculadora Diz",
+                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+            try
+            {
+                textBox1.Text = textBox1.Text.Substring(0, textBox1.Text.Length - 1);
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                v2 = double.Parse(textBox1.Text);
+                v1 = v2 / 100;
+                textBox1.Text += " % ";
+                op = '%';
+                textBox1.Clear();
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            double x = double.Parse(textBox1.Text);
+            if (x < 0)
+            {
+                textBox1.Text = "Este valor não é valido.";
+            }
+            else
+            {
+                x = Math.Sqrt(x);
+                textBox1.Text = x.ToString();
+            }
+
+        }
+
+
 
         private void divisão_Click(object sender, EventArgs e)
         {
@@ -117,6 +203,9 @@ namespace WindowsFormsApplication1
                     break;
                 case '/':
                     R = v1 / v2;
+                    break;
+                case '%':
+                    R = v1 * v2;
                     break;
             }
             textBox1.Text = R.ToString();
